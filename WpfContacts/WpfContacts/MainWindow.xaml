@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfContacts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfContacts"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+
+
+    <Grid Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/><!--List-->
+            <ColumnDefinition/><!--Contact info-->
+            <ColumnDefinition Width="0"/><!--Add-->
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBox Grid.Column="0" 
+                    Background="Black" Margin="10" BorderThickness="1" BorderBrush="#5D5D5D"
+                         Foreground="#5D5D5D" FontSize="20"/>
+
+                    <Button Grid.Column="1"
+                        Background="Black" Margin="10" BorderThickness="0"
+                        Content="+" Foreground="#5D5D5D" FontSize="22" />
+            </Grid>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+
+                <TextBlock Text="Name" Foreground="#5D5D5D" Margin="10,0,0,0" FontSize="15"/>
+
+                <ListBox Background="Black" Margin="10" Height="300" BorderThickness="0">
+                    
+                </ListBox>
+
+            </StackPanel>
+            
+        </Grid>
+        
+        
+        
+    </Grid>
+</Window>

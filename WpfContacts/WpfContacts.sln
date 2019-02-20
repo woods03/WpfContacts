@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfContacts", "WpfContacts\WpfContacts.csproj", "{76A7F265-593B-44A6-8BF1-B046F2A38F98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76A7F265-593B-44A6-8BF1-B046F2A38F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A7F265-593B-44A6-8BF1-B046F2A38F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A7F265-593B-44A6-8BF1-B046F2A38F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A7F265-593B-44A6-8BF1-B046F2A38F98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A39A5D7-51D0-420C-9F5F-C75D4BFF938F}
+	EndGlobalSection
+EndGlobal
