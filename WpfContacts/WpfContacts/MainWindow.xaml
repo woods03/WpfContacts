@@ -8,11 +8,10 @@
         Title="MainWindow" Height="450" Width="800">
 
 
-
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/><!--List-->
-            <ColumnDefinition/><!--Contact info-->
+            <ColumnDefinition Width="0"/><!--Contact info-->
             <ColumnDefinition Width="0"/><!--Add-->
         </Grid.ColumnDefinitions>
 
@@ -22,26 +21,30 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-
-            <Grid Grid.Row="0">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80*"/>
-                    <ColumnDefinition Width="20*"/>
-                </Grid.ColumnDefinitions>
-                
-                <TextBox Grid.Column="0" 
-                    Background="Black" Margin="10" BorderThickness="1" BorderBrush="#5D5D5D"
-                         Foreground="#5D5D5D" FontSize="20"/>
-
-                    <Button Grid.Column="1"
+            <!--Main window txtBox-->
+            <DockPanel FlowDirection="RightToLeft">
+                <Button Grid.Column="1"
                         Background="Black" Margin="10" BorderThickness="0"
-                        Content="+" Foreground="#5D5D5D" FontSize="22" />
-            </Grid>
+                        Content="+" Foreground="#5D5D5D" FontSize="22"
+                        Width="30"/>
 
+                <Grid Margin="5">
+                    <Border Background="Black" CornerRadius="15" 
+                            BorderBrush="#5D5D5D" BorderThickness="2">
+                        <DockPanel LastChildFill="True" FlowDirection="LeftToRight">
+                            <Button Content="&#128270;" Margin="5" Foreground="#5D5D5D" 
+                                    Background="Black" BorderThickness="0" FontSize="12" DockPanel.Dock="Right"/>
+                            <TextBox Margin="5" Background="Black" Foreground="#5D5D5D" BorderThickness="0" TextAlignment="Left"
+                                     FontSize="18"/>
+                        </DockPanel>
+                    </Border>
+                </Grid>
+            </DockPanel>
+
+            <!--Main window listBox-->
             <StackPanel Grid.Row="1" Orientation="Vertical">
 
-                <TextBlock Text="Name" Foreground="#5D5D5D" Margin="10,0,0,0" FontSize="15"/>
+                <TextBlock Text="Name" Foreground="#5D5D5D" Margin="10,7,0,0" FontSize="13"/>
 
                 <ListBox Background="Black" Margin="10" Height="300" BorderThickness="0">
                     
@@ -50,8 +53,6 @@
             </StackPanel>
             
         </Grid>
-        
-        
         
     </Grid>
 </Window>
