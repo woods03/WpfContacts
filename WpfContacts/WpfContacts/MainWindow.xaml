@@ -12,10 +12,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/><!--List-->
             <ColumnDefinition Width="0"/><!--Contact info-->
-            <ColumnDefinition Width="0"/><!--Add-->
+            <ColumnDefinition/><!--Add-->
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0"> <!--Main windows-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
@@ -46,13 +46,73 @@
 
                 <TextBlock Text="Name" Foreground="#5D5D5D" Margin="10,7,0,0" FontSize="13"/>
 
-                <ListBox Background="Black" Margin="10" Height="300" BorderThickness="0">
-                    
-                </ListBox>
 
             </StackPanel>
             
         </Grid>
+
+        <Grid Grid.Column="2"><!--Add window-->
+
+            <StackPanel Orientation="Vertical">
+
+                <Button x:Name="add_Photo_btn" Margin="40,40,40,0" Height="100" Width="100" ToolTip="Upload photo" Click="Add_Photo_btn_Click" ><!--Photo adding-->
+                    <Image Source="/Image/def_person.png">
+                        
+                    </Image>
+                </Button>
+
+                <TextBlock Text="Name" Foreground="#5D5D5D" Margin="10,10,0,0"/>
+                <DockPanel LastChildFill="True"><!--Name adding txtBox-->
+                    <Grid Margin="5">
+                        <Border Background="Black" CornerRadius="15"
+                            BorderBrush="#5D5D5D" BorderThickness="2">
+                            <TextBox Margin="5" Background="Black" Foreground="#5D5D5D" BorderThickness="0" TextAlignment="Left"
+                                            FontSize="18"
+                                     x:Name="add_Name_txtBox" TextChanged="Add_Name_txtBox_TextChanged"/>
+                        </Border>
+                    </Grid>
+                </DockPanel>
+
+                <TextBlock Text="Number" Foreground="#5D5D5D" Margin="10,20,0,0"/>
+                <DockPanel LastChildFill="True"><!--Number adding txtBox-->
+                    <Grid Margin="5">
+                        <Border Background="Black" CornerRadius="15"
+                            BorderBrush="#5D5D5D" BorderThickness="2">
+                            <TextBox Margin="5" Background="Black" Foreground="#5D5D5D" BorderThickness="0" TextAlignment="Left"
+                                         FontSize="18"
+                                     x:Name="add_Number_txtBox" TextChanged="Add_Number_txtBox_TextChanged"/>
+                        </Border>
+                    </Grid>
+                </DockPanel>
+
+
+                <Grid Margin="10,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Save" Grid.Column="0" Margin="10" FontSize="20"
+                            Foreground="#5D5D5D" Background="Black" BorderThickness="0"
+                            
+                            x:Name="add_save_btn" Click="Add_save_btn_Click"
+                            
+                            /><!--Add save btn-->
+                    <Button Content="Cancel" Grid.Column="1" Margin="10" FontSize="20"
+                            Foreground="#5D5D5D" Background="Black" BorderThickness="0"/><!--Add Cancel btn-->
+
+                </Grid>
+                
+            </StackPanel>
+            
+            
+            
+            
+        </Grid>
         
-    </Grid>
+        
+    </Grid> 
+    
+    
+    
 </Window>
