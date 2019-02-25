@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/><!--List-->
-            <ColumnDefinition Width="0"/><!--Contact info-->
-            <ColumnDefinition/><!--Add-->
+            <ColumnDefinition x:Name="MainColumn"/><!--List-->
+            <ColumnDefinition x:Name="InfoColumn" Width="0"/><!--Contact info-->
+            <ColumnDefinition x:Name="AddColumn" Width="0"/><!--Add-->
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0"> <!--Main windows-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="24"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -26,37 +26,110 @@
                 <Button Grid.Column="1"
                         Background="Black" Margin="10" BorderThickness="0"
                         Content="+" Foreground="#5D5D5D" FontSize="22"
-                        Width="30"/>
+                        Width="30"
+                        x:Name="add_contact_btn" Click="add_contact_btn_Click"
+                        />
 
                 <Grid Margin="5">
                     <Border Background="Black" CornerRadius="15" 
                             BorderBrush="#5D5D5D" BorderThickness="2">
                         <DockPanel LastChildFill="True" FlowDirection="LeftToRight">
                             <Button Content="&#128270;" Margin="5" Foreground="#5D5D5D" 
-                                    Background="Black" BorderThickness="0" FontSize="12" DockPanel.Dock="Right"/>
+                                    Background="Black" BorderThickness="0" FontSize="12" DockPanel.Dock="Right"
+                                    x:Name="search_btn" Click="search_btn_Click" />
                             <TextBox Margin="5" Background="Black" Foreground="#5D5D5D" BorderThickness="0" TextAlignment="Left"
-                                     FontSize="18"/>
+                                     FontSize="18"
+                                     x:Name="search_txt" TextChanged="search_txt_TextChanged"/>
                         </DockPanel>
                     </Border>
                 </Grid>
             </DockPanel>
 
-            <!--Main window listBox-->
-            <StackPanel Grid.Row="1" Orientation="Vertical">
-
+            <DockPanel Grid.Row="1">
                 <TextBlock Text="Name" Foreground="#5D5D5D" Margin="10,7,0,0" FontSize="13"/>
+            </DockPanel>
+            
+            
+            <!--Main window listBox-->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+                <StackPanel  Orientation="Vertical">
+                    
 
+                <ListBox x:Name="contList" Margin="5,10,5,5" Background="Transparent" BorderThickness="0" SelectionChanged="contList_SelectionChanged" SelectionMode="Single">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Background="Transparent" ToolTip="{Binding Path=Number}">
+                                    <Ellipse Height="45" Width="45">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Path=img}" AlignmentX="Center" AlignmentY="Center"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Margin="10,0,0,0" FontSize="22" Foreground="#5D5D5D" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
             </StackPanel>
-            
+            </ScrollViewer>
         </Grid>
 
+        <Grid Grid.Column="1"> <!--Info window-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" LastChildFill="False">
+                <Button DockPanel.Dock="Right" Margin="3"
+                        Content="Delete" Background="Transparent" Foreground="#5D5D5D" BorderThickness="0" FontSize="15"
+                        x:Name="info_delte_btn" Click="info_delte_btn_Click"
+                        />
+                <Button DockPanel.Dock="Right" Margin="3"
+                        Content="Edit 	&#9998;" Background="Transparent" Foreground="#5D5D5D" BorderThickness="0" FontSize="16"
+                        x:Name="info_edit_btn" Click="info_edit_btn_Click"/>
+            </DockPanel>
+
+            <Button x:Name="info_Photo_btn" Margin="10,10,10,0" Height="100" Width="100" ToolTip="Change photo" Click="info_Photo_btn_Click" Grid.Row="1" IsEnabled="False">
+                <!--Photo adding-->
+                <Image x:Name="info_Photo_btn_image" Source="{Binding info_imagePath, Mode=OneWay}">
+
+                </Image>
+            </Button>
+
+            <StackPanel Grid.Row="2">
+                <TextBox x:Name="info_Name_txtBox" HorizontalAlignment="Center" IsReadOnly="True" Margin="10" Background="Black" Foreground="#5D5D5D" BorderThickness="0"
+                         FontSize="25" MinWidth="150" TextAlignment="Center"/>
+                <TextBox x:Name="info_Number_txtBox" HorizontalAlignment="Center" IsReadOnly="True" Margin="10" Background="Black" Foreground="#5D5D5D" BorderThickness="0"
+                         FontSize="25" MinWidth="150" TextAlignment="Center" PreviewTextInput="add_Number_txtBox_PreviewTextInput"/>
+            </StackPanel>
+
+            <Grid Margin="10,20,0,0" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Save" Grid.Column="0" Margin="10" FontSize="20"
+                            Foreground="#5D5D5D" Background="Black" BorderThickness="0"
+                            x:Name="info_save_btn" Visibility="Hidden" Click="info_save_btn_Click"
+                            />
+                <Button Content="Cancel" Grid.Column="1" Margin="10" FontSize="20"
+                            Foreground="#5D5D5D" Background="Black" BorderThickness="0"
+                    x:Name="info_cancel_btn" Visibility="Hidden" Click="info_cancel_btn_Click"/>
+
+            </Grid>
+
+        </Grid>
+        
         <Grid Grid.Column="2"><!--Add window-->
 
             <StackPanel Orientation="Vertical">
 
                 <Button x:Name="add_Photo_btn" Margin="40,40,40,0" Height="100" Width="100" ToolTip="Upload photo" Click="Add_Photo_btn_Click" ><!--Photo adding-->
-                    <Image Source="/Image/def_person.png">
+                    <Image x:Name="add_Photo_btn_image" Source="{Binding imagePath, Mode=OneWay}">
                         
                     </Image>
                 </Button>
@@ -78,9 +151,14 @@
                     <Grid Margin="5">
                         <Border Background="Black" CornerRadius="15"
                             BorderBrush="#5D5D5D" BorderThickness="2">
-                            <TextBox Margin="5" Background="Black" Foreground="#5D5D5D" BorderThickness="0" TextAlignment="Left"
+                            <DockPanel LastChildFill="True">
+                                <TextBlock Text="+" Background="Black" Foreground="#5D5D5D" TextAlignment="Left"
+                                         FontSize="18" Margin="10,5,0,0"/>
+                                <TextBox Margin="5" Background="Black" Foreground="#5D5D5D" BorderThickness="0" TextAlignment="Left"
                                          FontSize="18"
-                                     x:Name="add_Number_txtBox" TextChanged="Add_Number_txtBox_TextChanged"/>
+                                     x:Name="add_Number_txtBox"  TextChanged="Add_Number_txtBox_TextChanged" PreviewTextInput="add_Number_txtBox_PreviewTextInput"/>    
+                            </DockPanel>
+                            
                         </Border>
                     </Grid>
                 </DockPanel>
@@ -99,7 +177,10 @@
                             
                             /><!--Add save btn-->
                     <Button Content="Cancel" Grid.Column="1" Margin="10" FontSize="20"
-                            Foreground="#5D5D5D" Background="Black" BorderThickness="0"/><!--Add Cancel btn-->
+                            Foreground="#5D5D5D" Background="Black" BorderThickness="0"
+
+                    x:Name="add_cancel_btn" Click="add_cancel_btn_Click"/>
+                    <!--Add Cancel btn-->
 
                 </Grid>
                 
@@ -109,10 +190,7 @@
             
             
         </Grid>
-        
-        
+
     </Grid> 
-    
-    
     
 </Window>
